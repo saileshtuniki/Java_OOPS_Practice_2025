@@ -3,6 +3,8 @@ package classesAndObjects;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
+
+//initialize the data members using command line arguments.
 public class Employees {
 
     private int empNo;
