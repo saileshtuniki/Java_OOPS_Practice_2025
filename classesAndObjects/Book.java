@@ -45,11 +45,32 @@ public class Book {
 
         Scanner sc = new Scanner(System.in);
 
-        Book[] books = {
-                new Book("TrueLies", "Vivek", 199, 10),
-                new Book("Evil amoung us", "criss", 99, 20),
-                new Book("LoveAll", "sai", 250, 50)
-        };
+        System.out.println("Enter number of books:");
+        int bookCount = sc.nextInt();
+        sc.nextLine();    //consume left over newline
+
+        Book[] books = new Book[bookCount];
+
+        for(int i=0; i < bookCount; i++){
+            System.out.println("Enter details of Few books "+ (i + 1)+ ":");
+            System.out.println("Title: ");
+            String title =sc.nextLine();
+            System.out.println("Author: ");
+            String author = sc.nextLine();
+            System.out.println("Cost: ");
+            double cost = sc.nextDouble();
+            System.out.println("No.of.Books: ");
+            int count = sc.nextInt();
+            sc.nextLine();
+
+            books[i] =  new Book(title, author, cost, count);
+        }
+
+//        Book[] books = {
+//                new Book("TrueLies", "Vivek", 199, 10),
+//                new Book("Evil amoung us", "criss", 99, 20),
+//                new Book("LoveAll", "sai", 250, 50)
+//        };
 
         //display the data
         for(Book b: books){
@@ -81,7 +102,6 @@ public class Book {
 
 // Call your method to process purchase
         foundBook.processPurchase(requestedTitle, requestedQuantity);
-
 
     }
 }
