@@ -25,53 +25,62 @@ public class Book {
         System.out.println("-----------------------");
     }
 
-    public void checkBookExists(String BookName, int numberOfBooks){
-        if(BookName.equals(title)  && numberOfBooks <= noOfBook){
-            System.out.println("Book available");
+    public boolean processPurchase(String requestedTitle, int requestedQuantity) {
+        if (requestedTitle.equalsIgnoreCase(this.title)) {
+            if (requestedQuantity <= this.noOfBook) {
+                double totalCost = requestedQuantity * this.cost;
+                System.out.println("Book available");
+                System.out.println("Total cost for " + requestedQuantity + " copies: " + totalCost);
+                return true;
+            } else {
+                System.out.println("Not enough copies available.");
+                return true; // Book exists, but insufficient quantity
+            }
         }
+        return false; // Book title doesn't match
     }
 
     public static void main(String[] args) {
 
+
         Scanner sc = new Scanner(System.in);
 
-        Book b2 = new Book("TrueLies", "Vivek", 199, 10);
-        Book b3 = new Book("Evil amoung us", "criss", 99, 20);
-        Book b4 = new Book("LoveAll", "sai", 250, 50);
+        Book[] books = {
+                new Book("TrueLies", "Vivek", 199, 10),
+                new Book("Evil amoung us", "criss", 99, 20),
+                new Book("LoveAll", "sai", 250, 50)
+        };
 
-        b2.displayBooksData();
-        b3.displayBooksData();
-        b4.displayBooksData();
-
-        //store books obj in array.
-        Book[] books = {b2, b3, b4};
-
-        System.out.println("Check book Exists.");
-        System.out.println("Enter name of book:");
-        String name = sc.nextLine();
-
-
-        Book found = null;
+        //display the data
         for(Book b: books){
-            if(b.title.equalsIgnoreCase(name)){
-                found = b;
+            b.displayBooksData();
+        }
+
+        System.out.println("CheckAvailability and Calculate:");
+        System.out.print("Enter book title: ");
+        String requestedTitle = sc.nextLine();
+
+
+// First, check if the book exists
+        Book foundBook = null;
+        for (Book b : books) {
+            if (b.title.equalsIgnoreCase(requestedTitle)) {
+                foundBook = b;
                 break;
             }
         }
-        if(found == null) {
-            System.out.println("Book not found");
+
+        if (foundBook == null) {
+            System.out.println("Book not found.");
             return;
         }
 
-        System.out.println("Enter quantity of books:");
-        int quantity = sc.nextInt();
+// Now ask for quantity only if book exists
+        System.out.print("Enter quantity: ");
+        int requestedQuantity = sc.nextInt();
 
-        if(quantity <= found.noOfBook){
-            double totalCost = quantity * found.cost;
-            System.out.println("Total Cost of books: "+ totalCost);
-        }else{
-            System.out.println("Not enough copies available");
-        }
+// Call your method to process purchase
+        foundBook.processPurchase(requestedTitle, requestedQuantity);
 
 
     }
