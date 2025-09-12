@@ -22,8 +22,8 @@ public class Employee {
     //default constructor
     public Employee(){
         this.empNo = 0;
-        this.empName = "unknown";
-        this.empRole = "intern";
+        this.empName = "Default unknown";
+        this.empRole = "Default intern";
         this.salary = 0.0;
     }
 
