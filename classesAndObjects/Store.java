@@ -3,16 +3,17 @@ package classesAndObjects;
 import java.util.ArrayList;
 
 class Product{
-    private String prductName;
+
+    private String productName;
     double productPrice;
 
-    public Product(String prductName, double productPrice) {
-        this.prductName = prductName;
+    public Product(String productName, double productPrice){
+        this.productName = productName;
         this.productPrice = productPrice;
     }
 
     public String getProductDetails(){
-        return "Product name: " + prductName + ", Price: $"+ productPrice;
+        return "Product Name: "+ productName + "Product Price: "+"$"+ productPrice;
     }
 
     @Override
@@ -20,22 +21,16 @@ class Product{
         return getProductDetails();
     }
 
-//    @Override
-//    public String toString(){
-//        return return "Product name: " + prductName + ", Price: $"+ productPrice;
-//    }
-
 }
 
 class Store{
 
-   private int storeID;
-   private String storeName;
-   private ArrayList<Product> productList;
-   private double revenue;
+    private int storeID;
+    private String storeName;
+    private ArrayList<Product> productList;
+    private double revenue;
 
-
-    public Store(int storeID,String storeName){
+    public Store(int storeID, String storeName){
         this.storeID = storeID;
         this.storeName = storeName;
         this.productList = new ArrayList<>();
@@ -45,36 +40,36 @@ class Store{
     public void addProduct(Product product){
         productList.add(product);
 
-        revenue = revenue + product.productPrice;
+        revenue +=  product.productPrice;
     }
 
-    public double calculateTotalRevenue(){
+    public double calTotalRevenue(){
         return revenue;
     }
 
-    public void displayStoreInfo(){
-        System.out.println("StoreID: "+ storeID);
-        System.out.println("Store Name: "+ storeName);
-        System.out.println("Product List: "+ productList);
+    public void displayStoreDetails(){
+        System.out.println("Store name: "+ storeName);
+        System.out.println("Store ID: "+ storeID);
+        System.out.println("Product List: ");
         for(Product product: productList){
-            System.out.println(product.getProductDetails());
+            System.out.println(" - " + product.getProductDetails());
         }
-        System.out.println("Total revenue: $"+ calculateTotalRevenue());
+        System.out.println("Total revenue: "+ calTotalRevenue());
     }
 
-
-
     public static void main(String[] args) {
-        Product p1 = new Product("laptop", 599.0);
-        Product p2 = new Product("PS5", 899.0);
-        Product p3 = new Product("SSD 1TB", 399.0);
 
-        Store s1 = new Store(101, "V-Electro");
+        Product p1 = new Product("PS5", 799);
+        Product p2 = new Product("MacBook M4", 999);
+        Product p3 = new Product("1TB", 249);
+
+        Store s1 = new Store(1024,"V-Electro");
 
         s1.addProduct(p1);
         s1.addProduct(p2);
         s1.addProduct(p3);
 
-        s1.displayStoreInfo();
+        s1.displayStoreDetails();
+
     }
 }
