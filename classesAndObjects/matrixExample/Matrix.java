@@ -13,6 +13,7 @@ public class Matrix {
         this.data = new int[rows][cols];
     }
 
+    //method to accept elements
     public void acceptMatrixElements(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the elements of the matrix ("+ rows+ "x" + cols +");");
