@@ -52,7 +52,7 @@ class Store{
         System.out.println("Store ID: "+ storeID);
         System.out.println("Product List: ");
         for(Product product: productList){
-            System.out.println(" - " + product.getProductDetails());
+            System.out.println(product.getProductDetails());
         }
         System.out.println("Total revenue: "+ calTotalRevenue());
     }
